@@ -1,0 +1,28 @@
+name: oci4haskell
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: AllRightsReserved
+license-file: ""
+description:
+data-dir: ""
+
+library
+    build-depends: base -any
+    exposed-modules: Oci
+    exposed: True
+    buildable: True
+    include-dirs: /usr/include/oracle/12.1/client64/
+    hs-source-dirs: src
+    other-modules: Ocihsc Ocic
+
+executable ocidemo
+    build-depends: base -any
+    main-is: Main.hs
+    buildable: True
+    -- ld-options:  -lclntsh -lons -lnnz12 -lclntshcore
+    extra-libraries: clntsh ons nnz12 clntshcore
+    extra-lib-dirs: /usr/lib/oracle/12.1/client64/lib/
+    include-dirs: /usr/include/oracle/12.1/client64/
+    hs-source-dirs: src
+
